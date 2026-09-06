@@ -1,0 +1,21 @@
+---
+- name: Install Docker and Configure User Permissions
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install Docker package[cite: 1]
+      apt:
+        name: docker.io[cite: 1]
+        state: present[cite: 1]
+
+    - name: Start Docker service[cite: 1]
+      service:
+        name: docker[cite: 1]
+        state: started[cite: 1]
+        enabled: yes[cite: 1]
+
+    - name: Let devuser run Docker[cite: 1]
+      user:
+        name: devuser[cite: 1]
+        groups: docker[cite: 1]
+        append: yes[cite: 1]
